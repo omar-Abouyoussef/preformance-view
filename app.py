@@ -49,7 +49,7 @@ drawdowns = (wealth / wealth.cummax() - 1) * 100
 
 for df, title, ylabel in [
     (performance, "Cumulative Performance", "Return (%)"),
-    (drawdowns, "Drawdown", "Drawdown (%)")
+    (drawdowns[["Portfolio", "EGX30 Benchmark"]], "Drawdown", "Drawdown (%)")
 ]:
     fig = px.line(df, title=title, labels={"Date": "Date", "value": ylabel, "variable": ""})
     fig.update_layout(
@@ -59,3 +59,4 @@ for df, title, ylabel in [
     )
     fig.add_hline(y=0, line_dash="dot", line_color="gray", opacity=0.6)
     st.plotly_chart(fig, use_container_width=True)
+    
